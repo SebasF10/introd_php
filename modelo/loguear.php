@@ -1,6 +1,9 @@
 <?php
     require "conexcion.php";
 
+    // iniciar sesion para guardar los datos del usuario
+    session_start();
+
     $usuario = $_POST['email'];
     $password = $_POST['password'];
 
@@ -12,8 +15,12 @@
 
     if($resultado['contar'] > 0)
     {
-        echo "El usuario existe en la BD <br>";
-        echo $resultado ['email'];
+        $_SESSION['username'] = $usuario;
+        //redirigir el usuario a su pagina
+        header("location: ../pagina_usuario.php");
+
+        /*echo "El usuario existe en la BD <br>";
+        echo $resultado ['email'];*/
     }
     else
     {
